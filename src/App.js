@@ -1,22 +1,25 @@
 import {Component} from "react";
-import Child from "./Child";
-
- class App extends Component{
-     state={
-         count:1
-     };
-    constructor(props) {
-        super(props);
-        console.log('初始化组件')
+import data from './data';
+import Child from './Child'
+class App extends Component{
+    state={
+        openName:'家人'
     }
-    addCount = ()=>{
-        this.setState({
-            count:this.state.count + 1
-        })
-    };
+    changeTitle = (openName)=>{
+       this.setState({
+           openName
+       })
+    }
     render(){
-        const {count} = this.state;
-        return<Child count={count} addCount={this.addCount}/>
+        const {openName} = this.state;
+        return (
+            <div className="friend-list">
+                {Object.keys(data).map((item,index)=>{
+                    return <Child key={index} title={item} list={data[item]} changeTitle={this.changeTitle} openName={openName}/>
+                })}
+            </div>
+        )
     }
 }
+
 export default App;
