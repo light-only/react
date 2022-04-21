@@ -5,9 +5,16 @@ import {indexNavs} from "../../../assets/js/nav.config";
 import qs from 'qs';
 import {useSelector} from "react-redux";
 import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
+import {useTopics} from "../../../store/actions/action.async";
 export default()=>{
     const {loading,data} = useSelector(state=>state.topics);
-    useEffect(()=>{})
+    const {search} = useLocation();
+    const {tab='all',page=1} = qs.parse(search.slice(1));
+    const getTopics = useTopics();
+    useEffect(()=>{
+        getTopics();
+    },[tab,page])
     return <>
            <Row>
                <Col span={20} className={style.content}>
@@ -27,7 +34,7 @@ export default()=>{
                     }}
                    />
                    <List
-
+                        loading={true}
                        renderItem={item=>{
                            return <List.Item></List.Item>
                        }}
