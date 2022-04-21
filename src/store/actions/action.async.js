@@ -1,0 +1,5 @@
+function useTopics(){
+
+}
+
+export {useTopics};

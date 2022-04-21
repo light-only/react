@@ -1,0 +1,28 @@
+.page{
+    height: 100vh;
+}
+.wrap{
+    margin: 0 auto;
+    width: 1200px;
+}
+.content{
+    margin-top: 10px;
+}
+#logo{
+    display: flex;
+    float:left;
+    margin: 0;
+    width: 200px;
+    height: 64px;
+}
+#logo a {
+    margin: auto;
+    width: 160px;
+    height: 40px;
+}
+#logo img{
+    display: block;
+}
+#nav{
+
+}
