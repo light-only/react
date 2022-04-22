@@ -32,7 +32,10 @@ function App (){
             <Content className='content wrap'>
                 <Routes/>
             </Content>
-            <Footer>Footer</Footer>
+            <Affix>
+                <Footer>Footer</Footer>
+            </Affix>
+
         </Layout>
 
     </div>

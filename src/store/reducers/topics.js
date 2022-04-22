@@ -12,7 +12,7 @@ export default (topics={
             }
         case actions.topics.update:
             return {
-                loading: true,
+                loading: false,
                 data:action.data
             }
         default:

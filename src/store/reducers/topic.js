@@ -11,7 +11,7 @@ export default (topic={
             }
         case 'actions.topic.update':
             return {
-                loading: true,
+                loading: false,
                 data:action.data
             }
         default:

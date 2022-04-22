@@ -1,19 +1,20 @@
-import {Row, Col, List} from 'antd';
+import {Row, Col, List, Pagination} from 'antd';
 import style from '../../../assets/css/index.module.css'
 import Nav from "../../../component/Nav";
 import {indexNavs} from "../../../assets/js/nav.config";
 import qs from 'qs';
 import {useSelector} from "react-redux";
 import {useEffect} from "react";
-import {useLocation} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import {useTopics} from "../../../store/actions/action.async";
 export default()=>{
     const {loading,data} = useSelector(state=>state.topics);
     const {search} = useLocation();
     const {tab='all',page=1} = qs.parse(search.slice(1));
     const getTopics = useTopics();
+    const navigate = useNavigate();
     useEffect(()=>{
-        getTopics();
+        getTopics({tab,page});
     },[tab,page])
     return <>
            <Row>
@@ -34,9 +35,19 @@ export default()=>{
                     }}
                    />
                    <List
-                        loading={true}
+                        loading={loading}
+                        dataSource={data}
                        renderItem={item=>{
-                           return <List.Item></List.Item>
+                           return <List.Item>{item.title}</List.Item>
+                       }}
+                   />
+                   <Pagination
+                       current={Number(page)}
+                       total={500}
+                       pageSize={10}
+                       showSizeChanger={false}
+                       onChange={(page)=>{
+                           navigate(`/?tab=${tab}&page=${page}`);
                        }}
                    />
                </Col>
